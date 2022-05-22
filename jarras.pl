@@ -43,3 +43,6 @@ acao((J1,J2),passar21,(J1a,J2a)):-
 	J1a =< C1,
 	J2a is J2 - DIFF,
 	J2a >= 0.
+
+vizinhos(N, FronteiraN):-
+	findall(X, acao(N, _, X), FronteiraN).
