@@ -80,3 +80,28 @@ busca_interna([EstadoAtual| RestoDosEstados], NosGeradosAnteriormente):-
 busca(FronteiraInicial):-
 	busca_interna(FronteiraInicial, []).
 */
+
+/*Letra G*/
+/* Para busca em profundidade, basta trocar a ordem dos parametros:
+Como estava: append(RestoDosEstados, VizinhosEstadoAtual, Fronteira)
+Como tem que ficar: append(VizinhosEstadoAtual, RestoDosEstados, Fronteira)
+*/
+/*
+busca_interna([EstadoAtual|_], _):-
+	objetivo(EstadoAtual).
+
+busca_interna([EstadoAtual| RestoDosEstados], NosGeradosAnteriormente):-
+	\+objetivo(EstadoAtual),
+	member(EstadoAtual, NosGeradosAnteriormente),
+	busca_interna(RestoDosEstados, NosGeradosAnteriormente).
+
+busca_interna([EstadoAtual| RestoDosEstados], NosGeradosAnteriormente):-
+	\+objetivo(EstadoAtual),
+	\+member(EstadoAtual, NosGeradosAnteriormente),
+	vizinhos(EstadoAtual, VizinhosEstadoAtual),
+	append(VizinhosEstadoAtual, RestoDosEstados, Fronteira),
+	busca_interna(Fronteira, [EstadoAtual | NosGeradosAnteriormente]).
+
+busca(FronteiraInicial):-
+	busca_interna(FronteiraInicial, []).
+*/
